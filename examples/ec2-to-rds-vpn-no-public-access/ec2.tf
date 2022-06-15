@@ -23,7 +23,6 @@ resource "aws_security_group" "aws_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
 }
 
 resource "tls_private_key" "this" {
@@ -46,6 +45,8 @@ module "ec2_complete" {
   vpc_security_group_ids      = [aws_security_group.aws_sg.id]
   associate_public_ip_address = true
   key_name                    = module.key_pair.key_pair_key_name
+
+  availability_zone = "us-east-1d"
 }
 
 
